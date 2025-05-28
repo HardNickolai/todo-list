@@ -4,14 +4,9 @@ import type { NavigationGuard } from "../type/router";
 const Main = () => import("../view/Main.vue");
 const Login = () => import("../view/Login.vue");
 
-const RoutePaths = {
-  MAIN: "/",
-  LOGIN: "/login",
-} as const;
-
 const routes = [
   {
-    path: RoutePaths.MAIN,
+    path: "/",
     name: "Main",
     component: Main,
     meta: {
@@ -19,7 +14,7 @@ const routes = [
     },
   },
   {
-    path: RoutePaths.LOGIN,
+    path: "/login",
     name: "Login",
     component: Login,
     meta: {
@@ -38,7 +33,7 @@ const authGuard: NavigationGuard = (to, _, next) => {
   const requiresAuth = to.meta.requiresAuth;
 
   if (requiresAuth && !isAuthenticated) {
-    next(RoutePaths.LOGIN);
+    next("/login");
     return;
   }
 
