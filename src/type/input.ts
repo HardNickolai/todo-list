@@ -1,0 +1,1 @@
+export type VuetifyValidationRule = (value: string) => string | boolean;
